@@ -136,7 +136,7 @@ app.get("/api/users/:_id/logs", async (req, res) => {
   }
   if (from || to) filter.date = dateObj;
 
-  const exercise = await Exercise.find({ user_id: id }).limit(+limit ?? 500);
+  const exercise = await Exercise.find({ user_id: id }).limit(+limit || 500);
   if (!exercise) return res.json({ error: "No exercise exists for the given 'id'" });
   const log = exercise.map((e) => ({
     description: e.description,
